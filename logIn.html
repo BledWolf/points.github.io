@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+	<head>
+		<!--JS-->
+		<script src="./js/shared.js"></script>
+		<script src="./js/logIn.js"></script>
+		<!--JQuery-->
+		<script src="./js/jquery-3.7.1.min.js"></script>
+		<!--Bootstrap-->
+		<script src="./bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+		<!--Handlebar-->
+		<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+		
+		<!--CSS-->
+		<link rel="stylesheet" href="./css/reset.css">
+		<link rel="stylesheet" href="./css/shared.css">
+		<link rel="stylesheet" href="./css/logIn.css">
+		<!--Bootstrap-->
+		<link rel="stylesheet" href="./bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+	</head>
+	<body>
+		<div class="container col-4">
+			<h1>LOG IN</h1>
+			<br>
+			<h3>Mail:</h3>
+			<input type="text" id="MailLogIn">
+			<br>
+			<h3>Password:</h3>
+			<input type="text" id="PwdLogIn">
+			<input class="btn btn-primary" type="button" id="LogInBtn" value="LogIn">
+		</div>
+
+		<div id="LogInConfirmHBSres"></div>
+		<div id="loadingHBSres"></div>
+	</body>
+
+
+
+	<script id="LogInConfirmHBS" type="text/x-handlebars-template">
+		{{#if LogInConfirm}}
+			<div class="position-fixed text-white BGloading">
+				<div class="btn btn-danger" id="CloseMailLogInBtn">
+					X
+				</div>
+				<div class="position-absolute logInConfirm">
+					<input type="text" id="LogInConfirmText">
+					<input type="button" class="btn btn-primary" id="btnLogInConfirm" value="LogIn confirm">
+				</div>
+			</div>
+		{{/if}}
+	</script>
+	
+	<script id="loadingHBS" type="text/x-handlebars-template">
+		{{#if loading}}
+			<div class="position-fixed text-white BGloading">
+				<div class="position-absolute" style="margin: calc(50vh - (12.5vh / 2)) calc(50vw - (12.5vh / 2));">
+					<div class="loader"></div>
+				</div>
+			</div>
+		{{/if}}
+	</script>
+
+
+
+</html>
+
