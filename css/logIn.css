@@ -1,0 +1,12 @@
+.logInConfirm{
+	height: 20vh;
+	width: 30vw;
+	margin: calc(50vh - (20vh / 2)) calc(50vw - (30vw / 2));
+}
+
+.CloseMailLogInBtn{
+	left: 0;
+	top: 0;
+	width: 10vh;
+	height: 10vh;
+}

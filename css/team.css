@@ -1,0 +1,29 @@
+/* .teamContainer{
+	width: calc(100vw - calc(4vw * 2));
+	margin: 0 4vw;
+} */
+
+.teamCard{
+	height: 20vh;
+	margin-top: 4vw;
+	/* width: calc(calc(100vw - calc(4vw * 4)) / 3); */
+	background-color:gainsboro;
+}
+
+.teamName{
+	height: 100%;
+	width: 100%;
+	font-size: 2.5vh;
+	text-align: center;
+}
+
+.btnViewTeam{
+	width: 100%;
+	height: 100%;
+	font-size: 2.5vh !important;
+}
+
+.teamCardRow{
+	width: 75%;
+	height: 7vh;
+}
