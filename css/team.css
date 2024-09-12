@@ -27,3 +27,11 @@
 	width: 75%;
 	height: 7vh;
 }
+
+.title{
+	text-align: end;
+}
+
+.desc{
+	font-size: 1.5vh;
+}

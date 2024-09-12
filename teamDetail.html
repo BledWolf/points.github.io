@@ -2,19 +2,19 @@
 	<head>
 		<!--JS-->
 		<script src="./js/shared.js"></script>
-		<script src="./js/index.js"></script>
-		
+		<script src="./js/teamDetail.js"></script>
+
 		<!--JQuery-->
 		<script src="./js/jquery-3.7.1.min.js"></script>
 		<!--Bootstrap-->
 		<script src="./bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 		<!--Handlebar-->
 		<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-		
+
 		<!--CSS-->
 		<link rel="stylesheet" href="./css/reset.css">
 		<link rel="stylesheet" href="./css/shared.css">
-		<link rel="stylesheet" href="./css/index.css">
+		<link rel="stylesheet" href="./css/team.css">
 		<!--Bootstrap-->
 		<link rel="stylesheet" href="./bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/css/bootstrap.min.css">
 	</head>
@@ -31,8 +31,8 @@
 		<div class="col-12 d-flex menuBG">
 			<div class="col-1"></div>
 			<div class="col-10 d-flex flex-row justify-content-left">
-				<a onclick="nav({'url': './index.html', 'displayName': 'Index'}, false, true)" class="link active">Home</a>
-				<a onclick="nav({'url': './team.html', 'displayName': 'Team'}, false, true)" link="" class="link">My Team</a>
+				<a onclick="nav({'url': './index.html', 'displayName': 'Index'}, false, true)" class="link">Home</a>
+				<a onclick="nav({'url': './team.html', 'displayName': 'Team'}, false, true)" link="" class="link active">My Team</a>
 				<a onclick="nav({'url': './activity.html', 'displayName': 'Activity'}, false, true)" link="" class="link">Activity</a>
 			</div>
 		</div>
@@ -45,116 +45,53 @@
 		<!-- END Nav Menu -->
 
 
-		<div id="indexHBSres"></div>
+		<div style="height: 2.5vh;"></div>
+		<div id="teamHBSres"></div>
 		<div id="loadingHBSres"></div>
 
 	</body>
 
-
-
-	<script id="indexHBS" type="text/x-handlebars-template">
-		<div class="card-body">
-			<hr>
-			{{#each user as |userInfo|}}
-				<div class="row">
-					<div class="col-3 title">
-						<p class="mb-0">
-							{{@key}}
-						</p>
-					</div>
-					<div class="col-sm-2"></div>
-					<div class="col-sm-7">
-						<p class="text-muted mb-0">{{this}}</p>
-					</div>
-				</div>
-				<hr>
-			{{/each}}
-		</div>
-
-		<div class="d-flex flex-row">
-			<div class="col-3">
-				<div class="card-body">
-					{{#each pointsTranslated as |point|}}
-					<div class="row">
-						<div class="col-12 title">
-							<p class="mb-0">
-								{{@key}}
-							</p>
-						</div>
-					</div>
-					<hr>
-					{{/each}}
-				</div>
-			</div>
-			<div class="col-5">
-				<div class="card-body">
-					{{#each pointsTranslated as |point|}}
-						<div class="row">
-							<div class="">
-								<p class="text-muted mb-0">{{this}}</p>
+	<script id="teamHBS" type="text/x-handlebars-template">
+		<div class="d-flex">
+			<div class="col-1"></div>
+			<div class="teamContainer col-10">
+				<div class="card-body d-flex flex-wrap justify-content-around">
+					{{#each team as |member|}}
+						<div class="card col-xl-3 col-lg-3 col-md-5 col-5">
+							<div class="card-body">
+								{{#each member as |point|}}
+									<div class="ID_{{@key}} card-text d-flex flex-row justify-content-between">
+										<p style="min-width: 51.5%; max-width: 76.5%; font-size: 1.5vh; text-align: start;">
+											{{@key}}
+										</p>
+										<p style="font-size: 1.5vh; text-align: center;">:</p>
+										<p style="min-width:21.5%; max-width:46.5%; font-size: 1.5vh; text-align: end;">{{this}}</p>
+									</div>
+								{{/each}}
+								<button type="button" class="btn btn-primary" onclick="nav({'url': './member.html?id={{member.userId}}', 'displayName': 'Member'})">Detail</button>
 							</div>
 						</div>
-						<hr>
-					{{/each}}
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card-body">
-					{{#each goalTranslated as |goal|}}
-						<div class="row">
-							<div class="">
-								<p class="text-muted mb-0">{{this}}</p>
-							</div>
-						</div>
-						<hr>
 					{{/each}}
 				</div>
 			</div>
 		</div>
-
-
-		
-		<!-- <div>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th scope="col">id</th>
-						<th scope="col">tot</th>
-					</tr>
-				</thead>
-				<tbody>
-					{{#each rows}}
-					<tr>
-						<td>{{id}}</td>
-						<td>{{tot}}</td>
-					</tr>
-					{{/each}}
-				</tbody>
-			</table>
-		</div> -->
 	</script>
-	
-
 
 	<script id="loadingHBS" type="text/x-handlebars-template">
 		{{#if loading}}
-			<div class="position-fixed text-white BGloading">
+			<div class="position-fixed text-white" style="background-color: rgba(0,0,0,0.6); top:0; left:0; height: 100%; width: 100%;">
 				<div class="position-absolute" style="margin: calc(50vh - (12.5vh / 2)) calc(50vw - (12.5vh / 2));">
 					<div class="loader"></div>
 				</div>
 			</div>
 		{{/if}}
 	</script>
-
-
+	
 
 	<script id="breadCrumbsHBS" type="text/x-handlebars-template">
 		{{#each breadCrumbs as |crumb|}}
 			<a onclick="nav({'url': '{{crumb.url}}', 'displayName': '{{crumb.displayName}}'}, true)" class="breadCrumb {{#if crumb.active}}bcActive{{/if}}">{{crumb.displayName}}</a>
 		{{/each}}
 	</script>
-
-
-
+        
 </html>
-

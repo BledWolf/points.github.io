@@ -20,53 +20,49 @@
 	</head>
 	<body>
 
-		<div>
-			<iframe seamless="seamless" id="menuLink" src="./html_components/menu.html"></iframe>
+		<!-- Nav Menu -->
+		<div class="col-12 d-flex menuBG">
+			<div class="col-1"></div>
+			<div class="col-10 d-flex flex-row justify-content-left">
+				<a onclick="logOut()" class="link">LogOut</a>
+				<a onclick="clearCache()" class="link">Clear Cache</a>
+			</div>
 		</div>
-		<div class="col-12 d-flex flex-row justify-content-left" id="breadCrumbsHBSres"></div>
+		<div class="col-12 d-flex menuBG">
+			<div class="col-1"></div>
+			<div class="col-10 d-flex flex-row justify-content-left">
+				<a onclick="nav({'url': './index.html', 'displayName': 'Index'}, false, true)" class="link">Home</a>
+				<a onclick="nav({'url': './team.html', 'displayName': 'Team'}, false, true)" link="" class="link active">My Team</a>
+				<a onclick="nav({'url': './activity.html', 'displayName': 'Activity'}, false, true)" link="" class="link">Activity</a>
+			</div>
+		</div>
+		<div class="col-12 d-flex menuBG">
+			<div class="col-1"></div>
+			<div class="col-10 d-flex flex-row justify-content-left">
+				<div id="breadCrumbsHBSres"></div>
+			</div>
+		</div>
+		<!-- END Nav Menu -->
+
 
 		<div id="teamsHBSres"></div>
-		
 		<div id="loadingHBSres"></div>
 
 	</body>
-
-
-
-	<script id="indexHBS" type="text/x-handlebars-template">
-		<div>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th scope="col">id</th>
-						<th scope="col">tot</th>
-					</tr>
-				</thead>
-				<tbody>
-					{{#each rows}}
-					<tr>
-						<td>{{id}}</td>
-						<td>{{tot}}</td>
-					</tr>
-					{{/each}}
-				</tbody>
-			</table>
-		</div>
-	</script>
 
 	<script id="teamsHBS" type="text/x-handlebars-template">
 		<div class="d-flex">
 			<div class="col-1"></div>
 			<div class="teamContainer d-flex flex-wrap justify-content-around col-10">
 				{{#each teams as |team|}}
-					<div class="teamCard d-flex flex-column justify-content-around align-items-center col-xl-3 col-lg-3 col-md-5 col-sm-10 col-10">
+					<div class="teamCard d-flex flex-column justify-content-around align-items-center col-xl-3 col-lg-3 col-md-5 col-5">
 						<div class="teamCardRow">
 							<div class="teamName">
 								{{team.name}}
 							</div>
 						</div>
 						<div class="teamCardRow">
-							<button type="button" class="btnViewTeam btn btn-primary">
+							<button type="button" class="btnViewTeam btn btn-primary" onclick="nav({'url': './teamDetail.html?id={{team.id}}', 'displayName': 'Members'})">
 								Members
 							</button>
 						</div>
@@ -85,6 +81,11 @@
 			</div>
 		{{/if}}
 	</script>
+
+	<script id="breadCrumbsHBS" type="text/x-handlebars-template">
+		{{#each breadCrumbs as |crumb|}}
+			<a onclick="nav({'url': '{{crumb.url}}', 'displayName': '{{crumb.displayName}}'}, true)" class="breadCrumb {{#if crumb.active}}bcActive{{/if}}">{{crumb.displayName}}</a>
+		{{/each}}
+	</script>
         
 </html>
-

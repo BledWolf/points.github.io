@@ -15,36 +15,9 @@ function loadTeam(){
 			"GET"
 			, {
 				"token": localStorage.getItem("token"),
-				"APIname": "generic/get",
-				"table": JSON.stringify([{
-					"db": "Users",
-					"tableName": "Team",
-					"collumns": ["id", "name"],
-					"where": [{
-						"key": "id",
-						"operation": "=",
-						"table":{
-							"db": "Users",
-							"tableName": "TeamMember",
-							"collumns": ["idTeam"],
-							"where": [{
-								"key": "idMember",
-								"operation": "=",
-								"table": {
-									"db": "Users",
-									"tableName": "User",
-									"collumns": ["id"],
-									"where": [{
-										"key": "token",
-										"operation": "=",
-										"value": localStorage.getItem("token")
-									}]
-								}
-							}]
-						}
-					}]
-				}])
+				"APIname": "team/my"
 			}
+			, "myTeams"
 			, "team"
 		))
 	}).then((resMyTeams)=>{

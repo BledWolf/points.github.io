@@ -2,7 +2,7 @@
 	<head>
 		<!--JS-->
 		<script src="./js/shared.js"></script>
-		<script src="./js/index.js"></script>
+		<script src="./js/activityDetail.js"></script>
 		
 		<!--JQuery-->
 		<script src="./js/jquery-3.7.1.min.js"></script>
@@ -14,7 +14,7 @@
 		<!--CSS-->
 		<link rel="stylesheet" href="./css/reset.css">
 		<link rel="stylesheet" href="./css/shared.css">
-		<link rel="stylesheet" href="./css/index.css">
+		<link rel="stylesheet" href="./css/activity.css">
 		<!--Bootstrap-->
 		<link rel="stylesheet" href="./bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/css/bootstrap.min.css">
 	</head>
@@ -31,9 +31,9 @@
 		<div class="col-12 d-flex menuBG">
 			<div class="col-1"></div>
 			<div class="col-10 d-flex flex-row justify-content-left">
-				<a onclick="nav({'url': './index.html', 'displayName': 'Index'}, false, true)" class="link active">Home</a>
+				<a onclick="nav({'url': './index.html', 'displayName': 'Index'}, false, true)" class="link">Home</a>
 				<a onclick="nav({'url': './team.html', 'displayName': 'Team'}, false, true)" link="" class="link">My Team</a>
-				<a onclick="nav({'url': './activity.html', 'displayName': 'Activity'}, false, true)" link="" class="link">Activity</a>
+				<a onclick="nav({'url': './activity.html', 'displayName': 'Activity'}, false, true)" link="" class="link active">Activity</a>
 			</div>
 		</div>
 		<div class="col-12 d-flex menuBG">
@@ -45,93 +45,31 @@
 		<!-- END Nav Menu -->
 
 
-		<div id="indexHBSres"></div>
+
+		<div id="activityHBSres"></div>
 		<div id="loadingHBSres"></div>
 
 	</body>
 
 
 
-	<script id="indexHBS" type="text/x-handlebars-template">
-		<div class="card-body">
-			<hr>
-			{{#each user as |userInfo|}}
-				<div class="row">
-					<div class="col-3 title">
-						<p class="mb-0">
-							{{@key}}
-						</p>
+	<script id="activityHBS" type="text/x-handlebars-template">
+		<div class="d-flex">
+			<div class="col-1"></div>
+			<div class="row teamContainer d-flex flex-wrap justify-content-around col-10">
+				{{#each activity.points as |point|}}
+					<div class="pointCard d-flex flex-column justify-content-around align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-5 col-5">
+						<div class="point">
+							<b>{{point.name}}</b>
+						</div>
+						<div class="point">
+							{{point.value}}
+						</div>
 					</div>
-					<div class="col-sm-2"></div>
-					<div class="col-sm-7">
-						<p class="text-muted mb-0">{{this}}</p>
-					</div>
-				</div>
-				<hr>
-			{{/each}}
+				{{/each}}
+			</div>
+			<div class="col-1"></div>
 		</div>
-
-		<div class="d-flex flex-row">
-			<div class="col-3">
-				<div class="card-body">
-					{{#each pointsTranslated as |point|}}
-					<div class="row">
-						<div class="col-12 title">
-							<p class="mb-0">
-								{{@key}}
-							</p>
-						</div>
-					</div>
-					<hr>
-					{{/each}}
-				</div>
-			</div>
-			<div class="col-5">
-				<div class="card-body">
-					{{#each pointsTranslated as |point|}}
-						<div class="row">
-							<div class="">
-								<p class="text-muted mb-0">{{this}}</p>
-							</div>
-						</div>
-						<hr>
-					{{/each}}
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card-body">
-					{{#each goalTranslated as |goal|}}
-						<div class="row">
-							<div class="">
-								<p class="text-muted mb-0">{{this}}</p>
-							</div>
-						</div>
-						<hr>
-					{{/each}}
-				</div>
-			</div>
-		</div>
-
-
-		
-		<!-- <div>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th scope="col">id</th>
-						<th scope="col">tot</th>
-					</tr>
-				</thead>
-				<tbody>
-					{{#each rows}}
-					<tr>
-						<td>{{id}}</td>
-						<td>{{tot}}</td>
-					</tr>
-					{{/each}}
-				</tbody>
-			</table>
-		</div> -->
 	</script>
 	
 

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+	<head>
+		<!--JS-->
+		<script src="./js/shared.js"></script>
+		<script src="./js/activity.js"></script>
+		
+		<!--JQuery-->
+		<script src="./js/jquery-3.7.1.min.js"></script>
+		<!--Bootstrap-->
+		<script src="./bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+		<!--Handlebar-->
+		<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+		
+		<!--CSS-->
+		<link rel="stylesheet" href="./css/reset.css">
+		<link rel="stylesheet" href="./css/shared.css">
+		<link rel="stylesheet" href="./css/activity.css">
+		<!--Bootstrap-->
+		<link rel="stylesheet" href="./bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+	</head>
+	<body>
+
+		<!-- Nav Menu -->
+		<div class="col-12 d-flex menuBG">
+			<div class="col-1"></div>
+			<div class="col-10 d-flex flex-row justify-content-left">
+				<a onclick="logOut()" class="link">LogOut</a>
+				<a onclick="clearCache()" class="link">Clear Cache</a>
+			</div>
+		</div>
+		<div class="col-12 d-flex menuBG">
+			<div class="col-1"></div>
+			<div class="col-10 d-flex flex-row justify-content-left">
+				<a onclick="nav({'url': './index.html', 'displayName': 'Index'}, false, true)" class="link">Home</a>
+				<a onclick="nav({'url': './team.html', 'displayName': 'Team'}, false, true)" link="" class="link">My Team</a>
+				<a onclick="nav({'url': './activity.html', 'displayName': 'Activity'}, false, true)" link="" class="link active">Activity</a>
+			</div>
+		</div>
+		<div class="col-12 d-flex menuBG">
+			<div class="col-1"></div>
+			<div class="col-10 d-flex flex-row justify-content-left">
+				<div id="breadCrumbsHBSres"></div>
+			</div>
+		</div>
+		<!-- END Nav Menu -->
+
+
+		<div id="selectActivityHBSres" class="col-12 d-flex flex-row justify-content-center"></div>
+
+
+		<div id="activitiesHBSres"></div>
+
+		<div id="activityHBSres"></div>
+		<div id="loadingHBSres"></div>
+
+	</body>
+
+
+
+	<script id="selectActivityHBS" type="text/x-handlebars-template">
+		<div class="d-flex flex-column justify-content-center">
+			<p style="font-size: 2vh;">Select activity to display :</p>
+			<div class="dropdown d-flex flex-row justify-content-center">
+				<button id="selectActivityHBSdropdownSelected" style="min-width: 20vw; height: 4vh; font-size: 1.5vh; margin-bottom: 1rem;" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					{{currentActivity}}
+				</button>
+				<ul class="dropdown-menu">
+					{{#each activityChoise as |activity|}}
+						<li><a class="dropdown-item" onclick="nav({'url': './activity.html?id={{activity.id}}&activity={{activity.name}}', 'displayName': 'Activity'}, false, false, true)">{{activity.name}}</a></li>
+					{{/each}}
+				</ul>
+			</div>
+			<button type="button" class="btn btn-success btnAdd" onclick="nav({'url': './addActivity.html', 'displayName': 'Add activity'})">
+				Add activity
+			</button>
+		</div>
+	</script>
+
+
+
+	<script id="activitiesHBS" type="text/x-handlebars-template">
+		<div class="d-flex">
+			<div class="col-1"></div>
+			<div class="row teamContainer d-flex flex-wrap justify-content-around col-10">
+				{{#each activities as |activity|}}
+					<div class="pointCard d-flex flex-column justify-content-around align-items-center col-xl-2 col-lg-3 col-md-5 col-sm-10 col-10">
+						<div class="point">
+							{{activity.date}}
+						</div>
+						<div class="point">
+							{{activity.time}}
+						</div>
+						<div class="point">
+							<b>Total : </b>{{activity.total}}
+						</div>
+						<div class="point">
+							<button type="button" style="font-size: 2vh;" class="btn btn-primary" onclick="nav({'url': './activityDetail.html?id={{activity.id}}', 'displayName': 'Detail'})">
+								Detail
+							</button>
+						</div>
+					</div>
+				{{/each}}
+			</div>
+			<div class="col-1"></div>
+		</div>
+	</script>
+	
+
+
+	<script id="loadingHBS" type="text/x-handlebars-template">
+		{{#if loading}}
+			<div class="position-fixed text-white BGloading">
+				<div class="position-absolute" style="margin: calc(50vh - (12.5vh / 2)) calc(50vw - (12.5vh / 2));">
+					<div class="loader"></div>
+				</div>
+			</div>
+		{{/if}}
+	</script>
+
+
+
+	<script id="breadCrumbsHBS" type="text/x-handlebars-template">
+		{{#each breadCrumbs as |crumb|}}
+			<a onclick="nav({'url': '{{crumb.url}}', 'displayName': '{{crumb.displayName}}'}, true)" class="breadCrumb {{#if crumb.active}}bcActive{{/if}}">{{crumb.displayName}}</a>
+		{{/each}}
+	</script>
+
+
+
+</html>
+

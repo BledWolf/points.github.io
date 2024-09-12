@@ -4,8 +4,10 @@
     left: 0;
     height: 100%;
     width: 100%;
+    z-index: 9;
 }
 
+/* Loading spinner */
 .loader {
     border: 2vh solid #f3f3f3;
     border-radius: 50%;
@@ -15,6 +17,7 @@
     height: 12.5vh;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
+    z-index: 9;
 }
   
 @-webkit-keyframes spin {
@@ -26,28 +29,49 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+/* END Loading spinner */
+
+.menuBG{
+	background-color: gainsboro;
+}
 
 .link{
     height: 5vh;
-    width: 25%;
-    background-color:gainsboro;
     color: darkred;
-    margin:0 1vw;
+    margin: 1vw 3vw 1vw 3vw;
     text-align: center;
-    font-size: 3vh;
+    font-size: 2.5vh;
     line-height: 5vh;
 		cursor: pointer;
     text-decoration: none;
 }
   
 .link:hover{
-    background-color: darkred;
-    color: white;
-    text-decoration: none;
+    color: darkolivegreen;
 }
 
 .active{
-	background-color:burlywood;
-	color:firebrick;
+	color:red;
+}
+
+.breadCrumb{
+	height: 3vh;
+	color: grey;
+	margin:0 1.5vw 1vw 1.5vw;
+	text-align: center;
+	font-size: 1.5vh;
+	line-height: 3vh;
+	cursor: pointer;
 	text-decoration: none;
+}
+
+.bcActive{
+	color: black
+}
+
+.dropdown-menu li a{
+    color:white;
+}
+.dropdown-menu li a:hover{
+    color:black;
 }

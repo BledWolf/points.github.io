@@ -1,0 +1,39 @@
+.DDpoints, .DDusers{
+	display: flex !important;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.pointCard{
+	height: 15vh;
+	margin-top: 4vw !important;
+	margin-left: 1vw;
+	margin-right: 1vw;
+	/* width: calc(calc(100vw - calc(4vw * 4)) / 3); */
+	background-color:gainsboro;
+}
+
+.point{
+	height: 25%;
+	width: 100%;
+	font-size: 2vh;
+	text-align: center;
+}
+
+.point button{
+	height: 100%;
+	width: 50%;
+	line-height: 50%;
+}
+
+.btnAdd{
+	height: 5vh;
+	width: 100%;
+	line-height: 50% !important;
+	font-size: 1.5vh !important;
+}
+
+.selected td{
+	background-color: rgba(0, 0, 0, 0.25) !important;
+}
